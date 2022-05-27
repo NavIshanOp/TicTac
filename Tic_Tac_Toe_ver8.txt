@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tic Tac Toes</title>
+    <link rel="stylesheet" href="tictactoe.css">
+    <style>
+    /* Add CSS rules here! */
+ul {
+  padding: 2px;
+   
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+}
+
+li {
+  width: 90px;
+  height: 90px;
+  float: left;
+  display: block;
+  list-style-type: none; 
+  text-aling: center;  
+  background-color: #aadbee;
+  color: black;
+  font:bold 80px "Trebuchet MS", sans-serif;
+  margin: 5px;
+}
+
+#restart {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  
+}
+#buttonstyle {
+  
+  border: 2px solid gray;
+  width: 100px;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  background-color: black;
+  margin-left: 100px;
+  
+}
+#buttonstyle:hover {
+  background-color: lightblue;
+  color: black;
+  width: 100px;
+  
+}
+#buttonstyle a:hover {
+  color: black;
+}
+
+
+#message {
+  border: 2px solid gray;
+  width: 278px;
+  margin-left: 5px;
+  text-align: center;  
+  padding: 5px;
+  font-size: 18px;
+  font-family: lemon;
+  border-radius: 30%;
+  background-color: black;
+  color: white;
+}
+#thegame {
+  
+  width: 350px;
+  margin-left: 35%;
+}
+
+@media screen and (max-width: 600px) {
+  #thegame {
+    margin-left: 19%;
+  }
+}
+    </style>
+</head>
+<body onload="startGame()">
+<div id="thegame">
+    <div id="message"></div>
+    <ul>
+        <li class="square" id="s1" onclick="nextMove(this)">
+        <li class="square" id="s2" onclick="nextMove(this)">
+        <li class="square" id="s3" onclick="nextMove(this)">
+
+        <li class="square" id="s4" onclick="nextMove(this)">
+        <li class="square" id="s5" onclick="nextMove(this)">
+        <li class="square" id="s6" onclick="nextMove(this)">
+
+        <li class="square" id="s7" onclick="nextMove(this)">
+        <li class="square" id="s8" onclick="nextMove(this)">
+        <li class="square" id="s9" onclick="nextMove(this)">
+    </ul>
+    
+    <div id="buttonstyle"><a href="javascript: startGame()" id="restart">Start over</a></div>
+    
+    <audio id="myAudio">
+  <source src="win.wav" type="audio/wav">
+  <source src="win.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
+
+    <audio id="mytest">
+  <source src="switch.wav" type="audio/wav">
+  <source src="switch.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
+
+    <audio id="error">
+  <source src="error.wav" type="audio/wav">
+  <source src="error.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
+
+
+    <audio id="xswitch">
+  <source src="xturn.wav" type="audio/wav">
+  <source src="xturn.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
+
+    <audio id="mygo">
+  <source src="go.wav" type="audio/wav">
+  <source src="go.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
+
+
+    </div>
+    <script>
+    function startGame() {
+      mygo();
+      for(var i = 1; i <= 9; i++) {
+         clearbox(i);
+      }
+      
+      
+      document.winner = null;
+      document.turn = "x";
+      setmessage(document.turn + " get's to Start");
+      
+    }
+    function setmessage(msg) {
+      document.getElementById("message").innerHTML = msg;
+    }
+    function nextMove(square) {    
+      if (document.winner != null) {
+      setmessage(document.turn + " Already won");
+      myError();
+      } else {
+      square.innerHTML = document.turn;
+      switchTurn();
+      }
+    }
+    
+    function switchTurn() {
+       if (checkforwinner(document.turn)) {
+        setmessage("Congrats " + document.turn + " you won");
+        playAudio();
+        document.winner = document.turn;
+       }
+       else if(document.turn == "x") {
+        document.turn = "o";        
+        setmessage(document.turn + " get's to Start"); 
+        test();       
+      }
+      
+      else {
+        document.turn = "x";
+        setmessage(document.turn + " get's to Start");
+        switchX()
+      }
+    }
+    
+    function checkforwinner(move) {
+      var result = false;
+      if (checkrow(1, 2, 3, move) || 
+          checkrow(4, 5, 6, move) ||
+          checkrow(7, 8, 9, move) ||
+          checkrow(1, 4, 7, move) ||
+          checkrow(2, 5, 8, move) ||
+          checkrow(3, 6, 9, move) ||
+          checkrow(1, 5, 9, move) ||
+          checkrow(3, 5, 7, move)) {
+            result = true;
+          }
+          return result;
+    }
+    
+    function checkrow(a, b, c, move) {
+      var result = false;
+      if (getbox(a) == move && getbox(b) == move && 
+          getbox(c) == move) {
+            result = true;
+          }
+      return result;
+    }
+    
+
+    
+    function getbox(number) {
+     return  document.getElementById("s" + number).innerHTML;
+    }
+    
+    function clearbox(number) {
+      document.getElementById("s" + number).innerHTML = "";
+    }
+    
+    var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+  x.play(); 
+}
+
+    var y = document.getElementById("mytest"); 
+
+function test() { 
+  y.play(); 
+}
+
+    var z = document.getElementById("error"); 
+
+function myError() { 
+  z.play(); 
+}
+
+    var l = document.getElementById("xswitch"); 
+
+function switchX() { 
+  l.play(); 
+}
+
+    var a = document.getElementById("mygo"); 
+
+function mygo() { 
+  a.play(); 
+}
+    </script>
+</body>
+</html
