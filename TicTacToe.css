@@ -1,0 +1,70 @@
+body {
+	font-family: arial;
+	background: url("https://raw.githubusercontent.com/ishanjaiswal-cmd/only-images/main/171248.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+h1{
+	margin: 10px auto 10px auto;
+	text-align: center;
+	color:#2F4F4F;
+
+}
+p{
+	margin: -1.7em auto 2em auto;
+	text-align: center;
+	color:white;
+	text-shadow: 1px 0 10px;
+	box-shadow: 0 0 20px #008080;
+}
+a{
+	color: #20B2AA;
+	font-size:18px;
+}
+hr{
+	margin:0 30%;
+}
+table{
+	margin: 2px auto 50px auto;
+}
+
+td{
+	padding:8px;
+	text-align: center;
+	width: 130px;
+	height: 130px;
+	font-size:100px;
+	transition: 0.2s ease;
+	outline: none;
+	border-radius: 50px;
+	box-shadow: 0 0 20px #008080;
+}
+.left{
+	border-bottom: 2px;
+}
+.center{
+	border-left: 2px ;
+	border-right: 2px;
+}
+.help{
+	background-color: white;
+	margin-left:20px;
+	font-size:40px;
+	color:#008080;
+}
+/*buttons (1vs1 , computer , reset) design*/
+button{
+	margin:10px;
+  	background-color: transparent; 
+  	box-shadow: 0 0 30px #008080;
+    border: 10px;
+    color: black;
+    border-radius: 50px;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
